@@ -1,4 +1,4 @@
-Playing around with React + Bulma + Firebase to create a fully responsive light weight website
+##Playing around with React + Bulma + Firebase to create a fully responsive light weight website
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
