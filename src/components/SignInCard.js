@@ -10,7 +10,7 @@ export default function SignInCard() {
           <div className="card">
             <div className="card-content has-text-centered">
               <p className="title">Ready to Sign Up?</p>
-              <a className="button is-primary">
+              <a href="/#" className="button is-primary">
                 TAKE YOUR STYLE QUIZ
                 <div className="column">
                   <FontAwesomeIcon icon={faArrowRight} />

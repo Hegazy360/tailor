@@ -1,33 +1,23 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import CategoryCards from "./components/CategoryCards";
-import HowItWorksHero from "./components/HowItWorksHero";
-import SignInCard from "./components/SignInCard";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { withAuthentication } from "components/Session";
 
-import "./App.sass";
+import Home from "pages/Home";
+import SignIn from "pages/SignIn";
+import SignUp from "pages/SignUp";
+import PasswordForget from "pages/PasswordForget";
 
-function App() {
-  return (
+import * as ROUTES from "constants/routes";
+
+const App = () => (
+  <Router>
     <div>
-      <Navbar />
-      <Hero />
-      <br />
-      <br />
-      <CategoryCards />
-      <br />
-      <br />
-      <br />
-      <HowItWorksHero />
-      <br />
-      <br />
-      <SignInCard />
-      <br />
-      <br />
-      <Footer />
-    </div>
-  );
-}
+      <Route exact path={ROUTES.LANDING} component={Home} />
+      <Route path={ROUTES.SIGN_IN} component={SignIn} />
+      <Route path={ROUTES.SIGN_UP} component={SignUp} />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForget} />
 
-export default App;
+    </div>
+  </Router>
+);
+export default withAuthentication(App);

@@ -1,8 +1,11 @@
 import React from "react";
 import ReactBreakpoints from "react-breakpoints";
 import ReactDOM from "react-dom";
-import "./index.css";
+
+import Firebase, { FirebaseContext } from "components/Firebase";
 import App from "./App";
+
+import "./index.sass";
 import * as serviceWorker from "./serviceWorker";
 
 const breakpoints = {
@@ -17,7 +20,9 @@ const breakpoints = {
 
 ReactDOM.render(
   <ReactBreakpoints breakpoints={breakpoints}>
-    <App />
+    <FirebaseContext.Provider value={new Firebase()}>
+      <App />
+    </FirebaseContext.Provider>
   </ReactBreakpoints>,
   document.getElementById("root")
 );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SignOutButton from 'pages/SignOut';
 
 export default function Navbar() {
   const [menuActive, setMenuState] = useState(false);
@@ -6,10 +7,11 @@ export default function Navbar() {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a className="navbar-item" href="https://bulma.io">
+        <a href="/#" className="navbar-item">
           Tailor
         </a>
         <a
+          href="/#"
           role="button"
           className={`navbar-burger burger ${menuActive ? "is-active" : ""}`}
           aria-label="menu"
@@ -28,21 +30,36 @@ export default function Navbar() {
         className={`navbar-menu ${menuActive ? "is-active" : ""}`}
       >
         <div className="navbar-start">
-          <a className="navbar-item">Women</a>
+          <a href="/#" className="navbar-item">
+            Women
+          </a>
 
-          <a className="navbar-item">Men</a>
+          <a href="/#" className="navbar-item">
+            Men
+          </a>
 
-          <a className="navbar-item">Kids</a>
+          <a href="/#" className="navbar-item">
+            Kids
+          </a>
         </div>
 
         <div className="navbar-end">
-          <a className="navbar-item">Style Guide</a>
+          <a href="/#" className="navbar-item">
+            Style Guide
+          </a>
 
-          <a className="navbar-item">FAQ</a>
+          <a href="/#" className="navbar-item">
+            FAQ
+          </a>
 
-          <a className="navbar-item">Gift Cards</a>
+          <a href="/#" className="navbar-item">
+            Gift Cards
+          </a>
           <div className="navbar-item">
-            <a className="button is-light">Sign In</a>
+            <a href="/#" className="button is-light">
+              Sign In
+            </a>
+            <SignOutButton />
           </div>
         </div>
       </div>

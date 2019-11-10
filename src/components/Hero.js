@@ -2,8 +2,8 @@ import React from "react";
 import { withBreakpoints } from "react-breakpoints";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import heroBgDesktop from "./../assets/images/clothes-desktop.jpg";
-import heroBgMobile from "./../assets/images/clothes-mobile.jpg";
+import heroBgDesktop from "assets/images/clothes-desktop.jpg";
+import heroBgMobile from "assets/images/clothes-mobile.jpg";
 
 export default withBreakpoints(function Hero({
   breakpoints,
@@ -22,7 +22,7 @@ export default withBreakpoints(function Hero({
               size & style, you’ll always look and feel your best. No
               subscription required.
             </h2>
-            <a className="button is-primary is-medium">
+            <a href="/#" className="button is-primary is-medium">
               Get Started
               <div className="column">
                 <FontAwesomeIcon icon={faArrowRight} />

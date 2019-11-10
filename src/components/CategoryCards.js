@@ -1,7 +1,7 @@
 import React from "react";
-import women from "./../assets/images/women.jpg";
-import men from "./../assets/images/men.jpg";
-import kids from "./../assets/images/kids.jpg";
+import women from "assets/images/women.jpg";
+import men from "assets/images/men.jpg";
+import kids from "assets/images/kids.jpg";
 import CategoryCard from "./CategoryCard";
 
 export default function CategoryCards() {
