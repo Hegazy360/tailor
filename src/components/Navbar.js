@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import SignOutButton from 'pages/SignOut';
+import SignOutButton from "pages/SignOut";
+import { Link } from "react-router-dom";
+import * as ROUTES from "constants/routes";
+import { AuthUserContext } from "components/Session";
 
 export default function Navbar() {
   const [menuActive, setMenuState] = useState(false);
@@ -7,9 +10,10 @@ export default function Navbar() {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <a href="/#" className="navbar-item">
+        <Link to={ROUTES.LANDING} className="navbar-item">
           Tailor
-        </a>
+        </Link>
+
         <a
           href="/#"
           role="button"
@@ -56,10 +60,17 @@ export default function Navbar() {
             Gift Cards
           </a>
           <div className="navbar-item">
-            <a href="/#" className="button is-light">
-              Sign In
-            </a>
-            <SignOutButton />
+            <AuthUserContext.Consumer>
+              {authUser =>
+                authUser ? (
+                  <SignOutButton />
+                ) : (
+                  <Link to={ROUTES.SIGN_IN} className="button is-light">
+                    Sign In
+                  </Link>
+                )
+              }
+            </AuthUserContext.Consumer>
           </div>
         </div>
       </div>

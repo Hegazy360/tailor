@@ -8,17 +8,21 @@ import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
 
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
+  <div class="container margin-top-xl padding-sm">
+    <h1 className="title">Sign In</h1>
     <SignInForm />
-    <PasswordForgetLink />
-    <SignUpLink />
+
+    <div className="has-text-centered">
+      <PasswordForgetLink />
+      <SignUpLink />
+    </div>
   </div>
 );
 const INITIAL_STATE = {
   email: "",
   password: "",
-  error: null
+  error: null,
+  loading: false
 };
 class SignInFormBase extends Component {
   constructor(props) {
@@ -27,6 +31,7 @@ class SignInFormBase extends Component {
   }
   onSubmit = event => {
     const { email, password } = this.state;
+    this.setState({ loading: true });
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
@@ -34,7 +39,7 @@ class SignInFormBase extends Component {
         this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ error, loading: false });
       });
     event.preventDefault();
   };
@@ -42,28 +47,47 @@ class SignInFormBase extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
-    const { email, password, error } = this.state;
+    const { email, password, error, loading } = this.state;
     const isInvalid = password === "" || email === "";
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-        {error && <p>{error.message}</p>}
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              className="input is-radiusless padding-lg"
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              className="input is-radiusless padding-lg"
+              name="password"
+              value={password}
+              onChange={this.onChange}
+              type="password"
+            />
+          </div>
+        </div>
+        <div className="has-text-centered margin-md">
+          <button
+            className={`button is-primary is-medium ${loading && "is-loading"}`}
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign In
+          </button>
+          <p className="margin-md has-text-danger">
+            {error && <p>{error.message}</p>}
+          </p>
+        </div>
       </form>
     );
   }

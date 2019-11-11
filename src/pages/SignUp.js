@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from "react-router-dom";
 import { withFirebase } from "components/Firebase";
-import { compose } from 'recompose';
+import { compose } from "recompose";
 
 import * as ROUTES from "constants/routes";
 
 const SignUp = () => (
-  <div>
-    <h1>SignUp</h1>
+  <div className="container">
     <SignUpForm />
   </div>
 );
@@ -17,7 +16,8 @@ const INITIAL_STATE = {
   email: "",
   passwordOne: "",
   passwordTwo: "",
-  error: null
+  error: null,
+  loading: false
 };
 
 class SignUpFormBase extends Component {
@@ -29,6 +29,7 @@ class SignUpFormBase extends Component {
 
   onSubmit = event => {
     const { email, passwordOne } = this.state;
+    this.setState({ loading: true });
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -36,7 +37,7 @@ class SignUpFormBase extends Component {
         this.props.history.push(ROUTES.LANDING);
       })
       .catch(error => {
-        this.setState({ error });
+        this.setState({ error, loading: false });
       });
     event.preventDefault();
   };
@@ -55,42 +56,75 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
-        {error && <p>{error.message}</p>}
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input
+              className="input"
+              name="username"
+              value={username}
+              onChange={this.onChange}
+              type="text"
+              placeholder="John Doe"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control">
+            <input
+              className="input"
+              name="email"
+              value={email}
+              onChange={this.onChange}
+              type="text"
+              placeholder="john.doe@gmail.com"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input
+              className="input"
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="*********"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control">
+            <input
+              className="input"
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="*********"
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <button class="button is-link" disabled={isInvalid} type="submit">
+              Sign Up
+            </button>
+            {error && <p>{error.message}</p>}
+          </div>
+        </div>
       </form>
     );
   }
 }
+
 const SignUpLink = () => (
   <p>
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
@@ -99,7 +133,7 @@ const SignUpLink = () => (
 
 const SignUpForm = compose(
   withRouter,
-  withFirebase,
+  withFirebase
 )(SignUpFormBase);
 
 export default SignUp;
