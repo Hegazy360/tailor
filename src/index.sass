@@ -76,6 +76,60 @@ $fullhd-enabled: false
   width: 90%
   margin-left: 15px
 
+.svg-container
+  width: 5.25rem
+  height: 5.25rem
+  margin: 0 auto 1.5rem
+
+.choices-container
+  width: 200px
+  position: relative
+  &--divider:before
+    content: ""
+    position: absolute
+    height: 2px
+    background: #cecece
+    width: 100%
+    left: 50%
+    top: calc(.5rem + 18px)
+    -webkit-transform: translateX(-50%)
+    transform: translateX(-50%)
+
+  input[type=radio]
+    display: block
+    box-sizing: border-box
+    padding: 0
+    webkit-appearance: none
+    -moz-appearance: none
+    appearance: none
+    cursor: pointer
+    position: relative
+    width: 100%
+    border: 0
+    background: none
+
+    &:focus,
+    &:active
+      outline: none
+
+    &:before
+      width: 30px
+      height: 30px
+      content: ""
+      background: #fff
+      border: 2px solid #cecece
+      border-radius: 50%
+      display: block
+      z-index: 1
+      margin: 0 auto
+    &:checked:before
+      background-color: #1695a3
+      border-color: #1695a3
+      transform: scale(1.2)
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='27' height='27'%3E%3Cpath fill='none' stroke='%23FFF' stroke-width='1.62' stroke-linecap='round' stroke-linejoin='round' d='M7.6 14l4 4.9 9-10.3'/%3E%3C/svg%3E")
+      background-repeat: no-repeat
+      background-position: 50%
+      background-size: 120%
 //page transition
 
 .container

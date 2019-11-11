@@ -12,7 +12,7 @@ import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
 
 const SignInPage = () => (
-  <div class="container margin-top-xl padding-lg">
+  <div className="container margin-top-xl padding-lg">
     <h1 className="title">Sign In</h1>
     <SignInForm />
     <div className="is-size-7 margin-top-md">
@@ -70,9 +70,9 @@ class SignInFormBase extends Component {
     const isInvalid = password === "" || email === "";
     return (
       <form onSubmit={this.onSubmit}>
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control">
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
             <input
               className="input is-radiusless padding-lg"
               name="email"
@@ -83,9 +83,9 @@ class SignInFormBase extends Component {
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">Password</label>
-          <div class="control">
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control">
             <input
               className="input is-radiusless padding-lg"
               name="password"
