@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { withFirebase } from "components/Firebase";
 import { compose } from "recompose";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import * as ROUTES from "constants/routes";
 
 const SignUp = () => (
-  <div className="container">
+  <div class="container margin-top-xl padding-lg">
+    <h1 className="title">Sign Up</h1>
     <SignUpForm />
   </div>
 );
@@ -47,7 +50,14 @@ class SignUpFormBase extends Component {
   };
 
   render() {
-    const { username, email, passwordOne, passwordTwo, error } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      error,
+      loading
+    } = this.state;
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === "" ||
@@ -60,7 +70,7 @@ class SignUpFormBase extends Component {
           <label class="label">Name</label>
           <div class="control">
             <input
-              className="input"
+              className="input is-radiusless padding-lg"
               name="username"
               value={username}
               onChange={this.onChange}
@@ -74,7 +84,7 @@ class SignUpFormBase extends Component {
           <label class="label">Email</label>
           <div class="control">
             <input
-              className="input"
+              className="input is-radiusless padding-lg"
               name="email"
               value={email}
               onChange={this.onChange}
@@ -88,7 +98,7 @@ class SignUpFormBase extends Component {
           <label class="label">Password</label>
           <div class="control">
             <input
-              className="input"
+              className="input is-radiusless padding-lg"
               name="passwordOne"
               value={passwordOne}
               onChange={this.onChange}
@@ -102,7 +112,7 @@ class SignUpFormBase extends Component {
           <label class="label">Confirm Password</label>
           <div class="control">
             <input
-              className="input"
+              className="input is-radiusless padding-lg"
               name="passwordTwo"
               value={passwordTwo}
               onChange={this.onChange}
@@ -111,14 +121,21 @@ class SignUpFormBase extends Component {
             />
           </div>
         </div>
-
-        <div class="field">
-          <div class="control">
-            <button class="button is-link" disabled={isInvalid} type="submit">
-              Sign Up
-            </button>
+        <div className="has-text-centered margin-md">
+          <a
+            href="/#"
+            className={`button is-primary is-medium ${loading && "is-loading"}`}
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign Up
+            <div className="column">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </div>
+          </a>
+          <p className="margin-md has-text-danger">
             {error && <p>{error.message}</p>}
-          </div>
+          </p>
         </div>
       </form>
     );

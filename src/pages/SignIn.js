@@ -3,12 +3,14 @@ import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { SignUpLink } from "pages/SignUp";
 import { PasswordForgetLink } from "pages/PasswordForget";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
 
 const SignInPage = () => (
-  <div class="container margin-top-xl padding-sm">
+  <div class="container margin-top-xl padding-lg">
     <h1 className="title">Sign In</h1>
     <SignInForm />
 
@@ -77,13 +79,17 @@ class SignInFormBase extends Component {
           </div>
         </div>
         <div className="has-text-centered margin-md">
-          <button
+          <a
+            href="/#"
             className={`button is-primary is-medium ${loading && "is-loading"}`}
             disabled={isInvalid}
             type="submit"
           >
             Sign In
-          </button>
+            <div className="column">
+              <FontAwesomeIcon icon={faArrowRight} />
+            </div>
+          </a>
           <p className="margin-md has-text-danger">
             {error && <p>{error.message}</p>}
           </p>
