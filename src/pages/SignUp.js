@@ -122,17 +122,17 @@ class SignUpFormBase extends Component {
           </div>
         </div>
         <div className="has-text-centered margin-md">
-          <a
+          <button
             href="/#"
             className={`button is-primary is-medium ${loading && "is-loading"}`}
             disabled={isInvalid}
             type="submit"
           >
             Sign Up
-            <div className="column">
+            <div className="column padding-none padding-left-sm">
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
-          </a>
+          </button>
           <p className="margin-md has-text-danger">
             {error && <p>{error.message}</p>}
           </p>
