@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { compose } from "recompose";
 import { SignUpLink } from "pages/SignUp";
 import { PasswordForgetLink } from "pages/PasswordForget";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  FacebookLoginButton,
-  GoogleLoginButton
-} from "react-social-login-buttons";
+import FacebookSignIn from "components/FacebookSignIn";
+import GoogleSignIn from "components/GoogleSignIn";
 
 import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
@@ -25,12 +23,12 @@ const SignInPage = () => (
     </div>
     <div className="columns">
       <div className="column is-half-desktop">
-        <SignInGoogle />
+        <GoogleSignIn />
       </div>
     </div>
     <div className="columns">
       <div className="column is-half-desktop">
-        <SignInFacebook />
+        <FacebookSignIn />
       </div>
     </div>
     <div className="is-size-7">
@@ -44,16 +42,6 @@ const INITIAL_STATE = {
   error: null,
   loading: false
 };
-
-const ERROR_CODE_ACCOUNT_EXISTS =
-  "auth/account-exists-with-different-credential";
-
-const ERROR_MSG_ACCOUNT_EXISTS = `
-  An account with an E-Mail address to
-  this social account already exists. Try to login from
-  this account instead and associate your social accounts on
-  your personal account page.
-`;
 
 class SignInFormBase extends Component {
   constructor(props) {
@@ -128,98 +116,16 @@ class SignInFormBase extends Component {
   }
 }
 
-class SignInGoogleBase extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { error: null };
-  }
-
-  onSubmit = event => {
-    this.props.firebase
-      .doSignInWithGoogle()
-      .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.LANDING);
-      })
-      .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
-        this.setState({ error });
-      });
-
-    event.preventDefault();
-  };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-      <form onSubmit={this.onSubmit}>
-        <GoogleLoginButton className="is-marginless" type="submit" />
-        {error && (
-          <p className="margin-top-md has-text-danger">{error.message}</p>
-        )}
-      </form>
-    );
-  }
-}
-
-class SignInFacebookBase extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { error: null };
-  }
-
-  onSubmit = event => {
-    this.props.firebase
-      .doSignInWithFacebook()
-      .then(() => {
-        this.setState({ error: null });
-        this.props.history.push(ROUTES.LANDING);
-      })
-      .catch(error => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
-        }
-
-        this.setState({ error });
-      });
-
-    event.preventDefault();
-  };
-
-  render() {
-    const { error } = this.state;
-
-    return (
-      <form onSubmit={this.onSubmit}>
-        <FacebookLoginButton className="is-marginless" type="submit" />
-        {error && (
-          <p className="margin-top-md has-text-danger">{error.message}</p>
-        )}
-      </form>
-    );
-  }
-}
+const SignInLink = () => (
+  <p>
+    Already have an account? <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+  </p>
+);
 
 const SignInForm = compose(
   withRouter,
   withFirebase
 )(SignInFormBase);
 
-const SignInGoogle = compose(
-  withRouter,
-  withFirebase
-)(SignInGoogleBase);
-
-const SignInFacebook = compose(
-  withRouter,
-  withFirebase
-)(SignInFacebookBase);
-
 export default SignInPage;
-export { SignInForm, SignInGoogle, SignInFacebook };
+export { SignInForm, SignInLink };

@@ -4,6 +4,9 @@ import { withFirebase } from "components/Firebase";
 import { compose } from "recompose";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FacebookSignIn from "components/FacebookSignIn";
+import GoogleSignIn from "components/GoogleSignIn";
+import { SignInLink } from "pages/SignIn";
 
 import * as ROUTES from "constants/routes";
 
@@ -11,6 +14,22 @@ const SignUp = () => (
   <div class="container margin-top-xl padding-lg">
     <h1 className="title">Sign Up</h1>
     <SignUpForm />
+    <div className="margin-top-lg margin-bottom-lg ">
+      <div className="is-size-5 is-narrow sign-in__line-separator">OR</div>
+    </div>
+    <div className="columns">
+      <div className="column is-half-desktop">
+        <GoogleSignIn />
+      </div>
+    </div>
+    <div className="columns">
+      <div className="column is-half-desktop">
+        <FacebookSignIn />
+      </div>
+    </div>
+    <div className="is-size-7">
+      <SignInLink />
+    </div>
   </div>
 );
 
@@ -121,10 +140,10 @@ class SignUpFormBase extends Component {
             />
           </div>
         </div>
-        <div className="has-text-centered margin-md">
+        <div className="margin-top-md">
           <button
-            href="/#"
-            className={`button is-primary is-medium ${loading && "is-loading"}`}
+            className={`button is-primary is-medium padding-left-xl padding-right-xl ${loading &&
+              "is-loading"}`}
             disabled={isInvalid}
             type="submit"
           >
@@ -133,9 +152,9 @@ class SignUpFormBase extends Component {
               <FontAwesomeIcon icon={faArrowRight} />
             </div>
           </button>
-          <p className="margin-md has-text-danger">
-            {error && <p>{error.message}</p>}
-          </p>
+          {error && (
+            <p className="margin-top-md has-text-danger">{error.message}</p>
+          )}
         </div>
       </form>
     );
