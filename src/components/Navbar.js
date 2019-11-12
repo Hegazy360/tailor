@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import SignOutButton from "pages/SignOut";
 import { Link } from "react-router-dom";
+import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
-import { AuthUserContext } from "components/Session";
 
-export default function Navbar() {
+function Navbar({ firebase }) {
   const [menuActive, setMenuState] = useState(false);
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav
+      className="navbar padding-right-xxl padding-left-xxl"
+      role="navigation"
+      aria-label="main navigation"
+    >
       <div className="navbar-brand">
         <Link to={ROUTES.LANDING} className="navbar-item">
           Tailor
@@ -60,20 +64,28 @@ export default function Navbar() {
             Gift Cards
           </a>
           <div className="navbar-item">
-            <AuthUserContext.Consumer>
-              {authUser =>
-                authUser ? (
-                  <SignOutButton />
-                ) : (
-                  <Link to={ROUTES.SIGN_IN} className="button is-light">
-                    Sign In
-                  </Link>
-                )
-              }
-            </AuthUserContext.Consumer>
+            {firebase.currentUser ? (
+              <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link">More</a>
+                <div className="navbar-dropdown">
+                  <a className="navbar-item">TODO: ADD NAME -> Link</a>
+                  <hr className="navbar-divider" />
+
+                  <a className="navbar-item">
+                    <SignOutButton />
+                  </a>
+                </div>
+              </div>
+            ) : (
+              <Link to={ROUTES.SIGN_IN} className="button is-light">
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </div>
     </nav>
   );
 }
+
+export default withFirebase(Navbar);

@@ -33,11 +33,28 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { email, passwordOne } = this.state;
+    const {
+      email,
+      passwordOne,
+      username,
+      shopping_feeling,
+      time_put_into_look,
+      latest_trend_frequency
+    } = this.state;
+
     this.setState({ loading: true });
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
+      .then(() => {
+        return this.props.firebase.currentUser().set({
+          username,
+          email,
+          shopping_feeling,
+          time_put_into_look,
+          latest_trend_frequency
+        });
+      })
+      .then(() => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.LANDING);
       })
@@ -75,12 +92,10 @@ class SignUpFormBase extends Component {
       email === "" ||
       username === "";
 
-    console.log(this.state);
-
     return (
       <div className="container margin-top-xl padding-lg">
         {step > 1 && (
-          <a onClick={this.decrementStep} class="is-absolute">
+          <a onClick={this.decrementStep} className="is-absolute">
             <FontAwesomeIcon icon={faChevronLeft} size="2x" color="lightgrey" />
           </a>
         )}
@@ -98,36 +113,36 @@ class SignUpFormBase extends Component {
                 <div className="columns is-mobile">
                   <div className="column has-text-centered">
                     <input
-                      name="step1"
+                      name="shopping_feeling"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="1"
-                      id="step1-1"
+                      className="margin-bottom-sm"
+                      value="Don't enjoy"
+                      id="shopping_feeling-1"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step1-1">Don't enjoy</label>
+                    <label htmlFor="shopping_feeling-1">Don't enjoy</label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step1"
+                      name="shopping_feeling"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="2"
-                      id="step1-2"
+                      className="margin-bottom-sm"
+                      value="It’s okay"
+                      id="shopping_feeling-2"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step1-2">It’s okay</label>
+                    <label htmlFor="shopping_feeling-2">It’s okay</label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step1"
+                      name="shopping_feeling"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="3"
-                      id="step1-3"
+                      className="margin-bottom-sm"
+                      value="Love it"
+                      id="shopping_feeling-3"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step1-3">Love it</label>
+                    <label htmlFor="shopping_feeling-3">Love it</label>
                   </div>
                 </div>
               </div>
@@ -148,36 +163,36 @@ class SignUpFormBase extends Component {
                 <div className="columns is-mobile">
                   <div className="column has-text-centered">
                     <input
-                      name="step2"
+                      name="time_put_into_look"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="1"
-                      id="step2-1"
+                      className="margin-bottom-sm"
+                      value="Not a lot"
+                      id="time_put_into_look-1"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step2-1">Not a lot</label>
+                    <label htmlFor="time_put_into_look-1">Not a lot</label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step2"
+                      name="time_put_into_look"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="2"
-                      id="step2-2"
+                      className="margin-bottom-sm"
+                      value="Some"
+                      id="time_put_into_look-2"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step2-2">Some</label>
+                    <label htmlFor="time_put_into_look-2">Some</label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step2"
+                      name="time_put_into_look"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="3"
-                      id="step2-3"
+                      className="margin-bottom-sm"
+                      value="Tons"
+                      id="time_put_into_look-3"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step2-3">Tons</label>
+                    <label htmlFor="time_put_into_look-3">Tons</label>
                   </div>
                 </div>
               </div>
@@ -198,36 +213,40 @@ class SignUpFormBase extends Component {
                 <div className="columns is-mobile">
                   <div className="column has-text-centered">
                     <input
-                      name="step3"
+                      name="latest_trend_frequency"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="1"
-                      id="step3-1"
+                      className="margin-bottom-sm"
+                      value="Rarely"
+                      id="latest_trend_frequency-1"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step3-1">Rarely</label>
+                    <label htmlFor="latest_trend_frequency-1">Rarely</label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step3"
+                      name="latest_trend_frequency"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="2"
-                      id="step3-2"
+                      className="margin-bottom-sm"
+                      value="Occasionally"
+                      id="latest_trend_frequency-2"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step3-2">Occasionally</label>
+                    <label htmlFor="latest_trend_frequency-2">
+                      Occasionally
+                    </label>
                   </div>
                   <div className="column has-text-centered">
                     <input
-                      name="step3"
+                      name="latest_trend_frequency"
                       type="radio"
-                      class="margin-bottom-sm"
-                      value="3"
-                      id="step3-3"
+                      className="margin-bottom-sm"
+                      value="All the time"
+                      id="latest_trend_frequency-3"
                       onChange={this.onChange}
                     />
-                    <label htmlFor="step3-3">All the time</label>
+                    <label htmlFor="latest_trend_frequency-3">
+                      All the time
+                    </label>
                   </div>
                 </div>
               </div>
@@ -250,7 +269,7 @@ class SignUpFormBase extends Component {
         )}
 
         {step === 4 && (
-          <div class="margin-top-xl">
+          <div className="margin-top-xl">
             <h1 className="title">Sign Up</h1>
             <form onSubmit={this.onSubmit}>
               <div className="field">
@@ -359,10 +378,7 @@ const SignUpLink = () => (
   </p>
 );
 
-const SignUpForm = compose(
-  withRouter,
-  withFirebase
-)(SignUpFormBase);
+const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
 
 export default SignUp;
 export { SignUpForm, SignUpLink };

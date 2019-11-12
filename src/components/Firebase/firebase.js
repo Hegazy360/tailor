@@ -1,5 +1,6 @@
 import app from "firebase/app";
 import "firebase/auth";
+import "firebase/firestore"
 
 const config = {
   apiKey: "AIzaSyDWwnpvvuLMBoLcp96KJTNFihEngyL_p98",
@@ -18,6 +19,7 @@ class Firebase {
     this.auth = app.auth();
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
+    this.db = app.firestore();
   }
 
   doCreateUserWithEmailAndPassword = (email, password) =>
@@ -35,6 +37,8 @@ class Firebase {
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
 
   doSignInWithFacebook = () => this.auth.signInWithPopup(this.facebookProvider);
+
+  currentUser = () => this.db.collection("users").doc(this.auth.currentUser.uid);
 }
 
 export default Firebase;
