@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import SignOutButton from "pages/SignOut";
 import { Link } from "react-router-dom";
-import { withFirebase } from "components/Firebase";
 import * as ROUTES from "constants/routes";
+import { AuthUserContext } from "components/Session";
 
-function Navbar({ firebase }) {
+export default function Navbar() {
   const [menuActive, setMenuState] = useState(false);
 
   return (
@@ -64,28 +64,32 @@ function Navbar({ firebase }) {
             Gift Cards
           </a>
           <div className="navbar-item">
-            {firebase.currentUser ? (
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">More</a>
-                <div className="navbar-dropdown">
-                  <a className="navbar-item">TODO: ADD NAME -> Link</a>
-                  <hr className="navbar-divider" />
+            <AuthUserContext.Consumer>
+              {authUser =>
+                authUser ? (
+                  <div className="navbar-item has-dropdown is-hoverable">
+                    <a className="navbar-link">More</a>
+                    <div className="navbar-dropdown">
+                      <a className="navbar-item">
+                        <p className="has-text-weight-semibold">{authUser.username}</p>
+                      </a>
+                      <hr className="navbar-divider" />
 
-                  <a className="navbar-item">
-                    <SignOutButton />
-                  </a>
-                </div>
-              </div>
-            ) : (
-              <Link to={ROUTES.SIGN_IN} className="button is-light">
-                Sign In
-              </Link>
-            )}
+                      <a className="navbar-item">
+                        <SignOutButton />
+                      </a>
+                    </div>
+                  </div>
+                ) : (
+                  <Link to={ROUTES.SIGN_IN} className="button is-light">
+                    Sign In
+                  </Link>
+                )
+              }
+            </AuthUserContext.Consumer>
           </div>
         </div>
       </div>
     </nav>
   );
 }
-
-export default withFirebase(Navbar);

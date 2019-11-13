@@ -12,10 +12,16 @@ const withAuthentication = Component => {
     }
 
     componentDidMount() {
-      this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState({ authUser })
-          : this.setState({ authUser: null });
+      this.listener = this.props.firebase.auth.onAuthStateChanged(() => {
+        this.props.firebase
+          .currentUser()
+          .get()
+          .then(snapshot => {
+            console.log(snapshot.data());
+            snapshot.exists
+              ? this.setState({ authUser: snapshot.data() })
+              : this.setState({ authUser: null });
+          });
       });
     }
 
