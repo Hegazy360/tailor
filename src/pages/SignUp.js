@@ -6,6 +6,7 @@ import { faArrowRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import FacebookSignIn from "components/FacebookSignIn";
 import GoogleSignIn from "components/GoogleSignIn";
+import RadioButton from "components/RadioButton";
 import Step1 from "components/Svgs/Step1";
 import Step2 from "components/Svgs/Step2";
 import Step3 from "components/Svgs/Step3";
@@ -111,39 +112,21 @@ class SignUpFormBase extends Component {
             <div className="column is-half-desktop is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
-                  <div className="column has-text-centered">
-                    <input
-                      name="shopping_feeling"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Don't enjoy"
-                      id="shopping_feeling-1"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="shopping_feeling-1">Don't enjoy</label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="shopping_feeling"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="It’s okay"
-                      id="shopping_feeling-2"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="shopping_feeling-2">It’s okay</label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="shopping_feeling"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Love it"
-                      id="shopping_feeling-3"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="shopping_feeling-3">Love it</label>
-                  </div>
+                  <RadioButton
+                    name="shopping_feeling"
+                    value="Don't enjoy"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="shopping_feeling"
+                    value="It’s okay"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="shopping_feeling"
+                    value="Love it"
+                    onChange={this.onChange}
+                  />
                 </div>
               </div>
             </div>
@@ -161,39 +144,21 @@ class SignUpFormBase extends Component {
             <div className="column is-half-desktop is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
-                  <div className="column has-text-centered">
-                    <input
-                      name="time_put_into_look"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Not a lot"
-                      id="time_put_into_look-1"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="time_put_into_look-1">Not a lot</label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="time_put_into_look"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Some"
-                      id="time_put_into_look-2"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="time_put_into_look-2">Some</label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="time_put_into_look"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Tons"
-                      id="time_put_into_look-3"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="time_put_into_look-3">Tons</label>
-                  </div>
+                  <RadioButton
+                    name="time_put_into_look"
+                    value="Not a lot"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="time_put_into_look"
+                    value="Some"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="time_put_into_look"
+                    value="Tons"
+                    onChange={this.onChange}
+                  />
                 </div>
               </div>
             </div>
@@ -211,43 +176,21 @@ class SignUpFormBase extends Component {
             <div className="column is-half-desktop is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
-                  <div className="column has-text-centered">
-                    <input
-                      name="latest_trend_frequency"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Rarely"
-                      id="latest_trend_frequency-1"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="latest_trend_frequency-1">Rarely</label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="latest_trend_frequency"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="Occasionally"
-                      id="latest_trend_frequency-2"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="latest_trend_frequency-2">
-                      Occasionally
-                    </label>
-                  </div>
-                  <div className="column has-text-centered">
-                    <input
-                      name="latest_trend_frequency"
-                      type="radio"
-                      className="margin-bottom-sm"
-                      value="All the time"
-                      id="latest_trend_frequency-3"
-                      onChange={this.onChange}
-                    />
-                    <label htmlFor="latest_trend_frequency-3">
-                      All the time
-                    </label>
-                  </div>
+                  <RadioButton
+                    name="latest_trend_frequency"
+                    value="Rarely"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="latest_trend_frequency"
+                    value="Occasionally"
+                    onChange={this.onChange}
+                  />
+                  <RadioButton
+                    name="latest_trend_frequency"
+                    value="All the time"
+                    onChange={this.onChange}
+                  />
                 </div>
               </div>
             </div>
