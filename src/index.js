@@ -1,6 +1,7 @@
 import React from "react";
 import ReactBreakpoints from "react-breakpoints";
 import ReactDOM from "react-dom";
+import { ToastContainer } from 'react-toastify';
 
 import Firebase, { FirebaseContext } from "components/Firebase";
 import App from "./App";
@@ -22,6 +23,7 @@ ReactDOM.render(
   <ReactBreakpoints breakpoints={breakpoints}>
     <FirebaseContext.Provider value={new Firebase()}>
       <App />
+      <ToastContainer />
     </FirebaseContext.Provider>
   </ReactBreakpoints>,
   document.getElementById("root")

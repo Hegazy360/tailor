@@ -22,12 +22,12 @@ const SignInPage = () => (
       <div className="is-size-5 is-narrow sign-in__line-separator">OR</div>
     </div>
     <div className="columns">
-      <div className="column is-half-desktop">
+      <div className="column is-half-tablet">
         <GoogleSignIn />
       </div>
     </div>
     <div className="columns">
-      <div className="column is-half-desktop">
+      <div className="column is-half-tablet">
         <FacebookSignIn />
       </div>
     </div>

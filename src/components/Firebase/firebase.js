@@ -1,4 +1,5 @@
-import app from "firebase/app";
+import * as app from 'firebase/app';
+
 import "firebase/auth";
 import "firebase/firestore"
 
@@ -20,6 +21,7 @@ class Firebase {
     this.googleProvider = new app.auth.GoogleAuthProvider();
     this.facebookProvider = new app.auth.FacebookAuthProvider();
     this.db = app.firestore();
+    this.fieldValue = app.firestore.FieldValue
   }
 
   doCreateUserWithEmailAndPassword = (email, password) =>

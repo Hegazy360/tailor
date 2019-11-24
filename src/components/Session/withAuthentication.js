@@ -1,6 +1,8 @@
 import React from "react";
-import AuthUserContext from "./context";
+import { toast } from 'react-toastify';
 import { withFirebase } from "components/Firebase";
+
+import AuthUserContext from "./context";
 
 const withAuthentication = Component => {
   class WithAuthentication extends React.Component {
@@ -12,16 +14,20 @@ const withAuthentication = Component => {
     }
 
     componentDidMount() {
-      this.listener = this.props.firebase.auth.onAuthStateChanged(() => {
-        this.props.firebase
-          .currentUser()
-          .get()
-          .then(snapshot => {
-            console.log(snapshot.data());
-            snapshot.exists
-              ? this.setState({ authUser: snapshot.data() })
-              : this.setState({ authUser: null });
-          });
+      this.listener = this.props.firebase.auth.onAuthStateChanged(authUser => {
+        if (authUser) {
+          this.props.firebase
+            .currentUser()
+            .get()
+            .then(snapshot => {
+              if (snapshot.exists) {
+                this.setState({ authUser: snapshot.data() });
+                toast.success("Hello! Welcome back");
+                return;
+              }
+            });
+        }
+        this.setState({ authUser: null });
       });
     }
 

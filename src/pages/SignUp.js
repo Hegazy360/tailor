@@ -106,10 +106,10 @@ class SignUpFormBase extends Component {
             <div className="svg-container">
               <Step1 />
             </div>
-            <p className="column is-half-desktop is-centered has-text-centered is-size-4">
+            <p className="column is-half-tablet is-centered has-text-centered is-size-4">
               How do you feel about shopping?
             </p>
-            <div className="column is-half-desktop is-centered choices-container">
+            <div className="column is-half-tablet is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
                   <RadioButton
@@ -138,10 +138,10 @@ class SignUpFormBase extends Component {
             <div className="svg-container">
               <Step2 />
             </div>
-            <p className="column is-half-desktop is-centered has-text-centered is-size-4">
+            <p className="column is-half-tablet is-centered has-text-centered is-size-4">
               How much time & effort do you put into getting the right look?
             </p>
-            <div className="column is-half-desktop is-centered choices-container">
+            <div className="column is-half-tablet is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
                   <RadioButton
@@ -170,10 +170,10 @@ class SignUpFormBase extends Component {
             <div className="svg-container">
               <Step3 />
             </div>
-            <p className="column is-half-desktop is-centered has-text-centered is-size-4">
+            <p className="column is-half-tablet is-centered has-text-centered is-size-4">
               How often do you try out the latest styles & trends?
             </p>
-            <div className="column is-half-desktop is-centered choices-container">
+            <div className="column is-half-tablet is-centered choices-container">
               <div className="choices-container--divider">
                 <div className="columns is-mobile">
                   <RadioButton
@@ -296,12 +296,12 @@ class SignUpFormBase extends Component {
               </div>
             </div>
             <div className="columns">
-              <div className="column is-half-desktop">
+              <div className="column is-half-tablet">
                 <GoogleSignIn />
               </div>
             </div>
             <div className="columns">
-              <div className="column is-half-desktop">
+              <div className="column is-half-tablet">
                 <FacebookSignIn />
               </div>
             </div>

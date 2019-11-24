@@ -3,31 +3,31 @@ import { withBreakpoints } from "react-breakpoints";
 import { Link } from "react-router-dom";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import heroBgDesktop from "assets/images/clothes-desktop.jpg";
-import heroBgMobile from "assets/images/clothes-mobile.jpg";
 
 import * as ROUTES from "constants/routes";
 
 export default withBreakpoints(function Hero({
   breakpoints,
-  currentBreakpoint
+  currentBreakpoint,
+  categoryName,
+  heroTitle,
+  heroSubtitle,
+  heroBgDesktop,
+  heroBgMobile
 }) {
   const isMobile = breakpoints[currentBreakpoint] < breakpoints.tablet;
-
+  
   return (
     <section className="hero is-medium has-background">
       <div className={`hero-body ${isMobile && "is-absolute"}`}>
         <div className="container is-fluid">
-          <div className="column is-one-third-desktop has-text-centered	">
-            <h1 className="title">Personal Styling for Everybody</h1>
-            <h2 className="subtitle">
-              With clothing hand-selected by our expert stylists for your unique
-              size & style, you’ll always look and feel your best. No
-              subscription required.
-            </h2>
+          <div className="column is-one-third-tablet has-text-centered	">
+            {categoryName && <p className="is-uppercase">{categoryName}</p>}
+            <h1 className="title">{heroTitle}</h1>
+            <h2 className="subtitle">{heroSubtitle}</h2>
             <Link to={ROUTES.SIGN_UP} className="button is-primary is-medium">
               Get Started
-              <div className="column">
+              <div className="column padding-right-none">
                 <FontAwesomeIcon icon={faArrowRight} />
               </div>
             </Link>

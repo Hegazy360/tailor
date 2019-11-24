@@ -24,6 +24,7 @@ $fullhd-enabled: false
 @import '../node_modules/bulma/sass/layout/footer.sass'
 @import '../node_modules/bulma/sass/grid/columns.sass'
 @import '../node_modules/bulma/sass/layout/section.sass'
+@import '../node_modules/bulma/sass/grid/tiles.sass'
 @import './style/spacing.sass'
 
 .hero
@@ -130,6 +131,48 @@ $fullhd-enabled: false
       background-repeat: no-repeat
       background-position: 50%
       background-size: 120%
+
+//checkbox
+
+#ck-button
+  padding: 0
+  height: auto
+  overflow: visible
+  border: none
+  width: 100%
+
+  & label
+    width: 100%
+    span
+      text-align: center
+      display: block
+      padding: 0.5rem 2rem
+      background-color: white
+      border: 1px solid lightgrey
+      border-radius: 5px
+      cursor: pointer
+      width: 100%
+
+  & label input
+    position: absolute
+    top: -20px
+    visibility: hidden
+
+  & input:checked + span
+    background-color: $primary
+    color: #fff
+    animation: pulse 0.4s ease
+
+  @keyframes pulse
+    0%
+      transform: scale(1)
+
+    50%
+      transform: scale(1.1)
+
+    100%
+      transform: scale(1)
+
 //page transition
 
 .container
@@ -137,8 +180,9 @@ $fullhd-enabled: false
 
 .page
   position: absolute
-  left: 15px
-  right: 15px
+  padding-top: 50px
+  left: 0
+  right: 0
 
   &-enter
     opacity: 0
@@ -157,3 +201,10 @@ $fullhd-enabled: false
     opacity: 0
     transform: scale(0.9)
     transition: opacity 300ms, transform 300ms
+
+//toasts
+.Toastify__toast--success
+  background-color: $primary
+
+.gradient-background
+  background: linear-gradient(180deg,transparent 0,transparent 55%,#ffff4a 0,#ffff4a)

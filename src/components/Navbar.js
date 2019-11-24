@@ -38,17 +38,9 @@ export default function Navbar() {
         className={`navbar-menu ${menuActive ? "is-active" : ""}`}
       >
         <div className="navbar-start">
-          <a href="/#" className="navbar-item">
-            Women
-          </a>
-
-          <a href="/#" className="navbar-item">
-            Men
-          </a>
-
-          <a href="/#" className="navbar-item">
-            Kids
-          </a>
+          <Link to={ROUTES.WOMEN} className="navbar-item">Women</Link>
+          <Link to={ROUTES.MEN} className="navbar-item">Men</Link>
+          <Link to={ROUTES.KIDS} className="navbar-item">Kids</Link>
         </div>
 
         <div className="navbar-end">
@@ -68,11 +60,11 @@ export default function Navbar() {
               {authUser =>
                 authUser ? (
                   <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link">More</a>
+                    <a className="navbar-link">Account</a>
                     <div className="navbar-dropdown">
-                      <a className="navbar-item">
+                      <Link to={ROUTES.ACCOUNT} className="navbar-item">
                         <p className="has-text-weight-semibold">{authUser.username}</p>
-                      </a>
+                      </Link>
                       <hr className="navbar-divider" />
 
                       <a className="navbar-item">
