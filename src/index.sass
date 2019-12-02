@@ -6,6 +6,10 @@ body
 code
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
 
+html,
+body
+  background-color: #f6f6f6 !important
+
 // Import a Google Font
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700')
 
@@ -27,6 +31,12 @@ $fullhd-enabled: false
 @import '../node_modules/bulma/sass/grid/tiles.sass'
 @import './style/spacing.sass'
 
+.navbar
+  position: absolute
+  left: 0
+  right: 0
+  background-color: transparent
+  
 .hero
   &.has-background
     position: relative

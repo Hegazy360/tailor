@@ -19,7 +19,6 @@ export default function Navbar() {
         </Link>
 
         <a
-          href="/#"
           role="button"
           className={`navbar-burger burger ${menuActive ? "is-active" : ""}`}
           aria-label="menu"
